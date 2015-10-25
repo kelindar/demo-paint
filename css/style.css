@@ -1,0 +1,356 @@
+@import url(http://fonts.googleapis.com/css?family=Nunito:700);
+
+* {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: arial, sans-serif;
+    background-color: #eee;
+    overflow: hidden;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+ul {
+    list-style: none;
+}
+
+#container {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+
+/* Container */
+
+#connect-indicator {
+    position: absolute;
+
+    margin-top: -15px;
+    margin-left: -100px;
+
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 30px;
+
+    text-align: center;
+
+    color: #666;
+
+    -webkit-transition: opacity .5s;
+       -moz-transition: opacity .5s;
+        -ms-transition: opacity .5s;
+         -o-transition: opacity .5s;
+            transition: opacity .5s;
+}
+
+.online #connect-indicator {
+    opacity: 0;
+}
+
+#board {
+    opacity: 0;
+    -webkit-transition: opacity .5s;
+       -moz-transition: opacity .5s;
+        -ms-transition: opacity .5s;
+         -o-transition: opacity .5s;
+            transition: opacity .5s;
+}
+
+.online #board {
+    opacity: 1;
+}
+
+.online #board canvas div:first-child {
+    width: 720px;
+    height: 480px;
+}
+
+#board {
+    position: absolute;
+
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+
+    margin: 0 0 0 0;
+    padding-left: 26px;
+    padding-right: 26px;
+
+    top: 26px;
+    left: 0;
+    right: 0;
+    bottom: 56px;
+
+    max-height: 625px; 
+
+    height: auto;
+}
+
+
+#board canvas {
+
+    -moz-box-sizing:border-box;
+         box-sizing:border-box;
+
+    background-color: #fff;
+
+    border: 1px solid #ddd;
+    box-shadow: #e3e3e3 0 1px 1px;
+
+    width: 100%;
+    height: 100%;
+
+    cursor: crosshair;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+#controls {
+    position: absolute;
+
+    -moz-box-sizing:border-box;
+         box-sizing:border-box;
+
+    padding: 6px 28px 12px 28px;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+
+    overflow: hidden;
+}
+
+#controls > * {
+    float: left;
+}
+
+#controls .colors {
+    -moz-box-sizing:border-box;
+         box-sizing:border-box;
+
+    width: 70%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+#controls .colors li {
+    float: left;
+    position: relative;
+    margin: 0 15px 20px 0;
+    width: 32px;
+    height: 32px;
+}
+
+#controls .colors input {
+    display: none;
+}
+
+#controls .colors label {
+    display: inline-block;
+    border: none;
+    background-color: white;
+    border-radius: 28px;
+    width: 100%;
+    height: 100%;
+
+    outline: none;
+
+    -webkit-appearance: none;
+       -moz-appearance: none;
+}
+
+#controls .colors input:checked + label:after {
+    position: absolute;
+    display: block;
+    text-align: center;
+    left: 4px;
+    top: 4px;
+    line-height: 8px;
+    font-size: 8px;
+    color: #999;
+    content: "";
+    width: 24px;
+    height: 24px;
+    opacity: .5;
+    background: white;
+    border-radius: 28px;
+}
+
+#controls .colors input:checked + label[for="color-8"]:after {
+    background: #AAA;
+}
+
+#controls label[for="color-1"] { background-color: #FF6C4F; }
+#controls label[for="color-2"] { background-color: #ACC791; }
+#controls label[for="color-3"] { background-color: #78A8CC; }
+
+#controls label[for="color-4"] { background-color: #87BDC4; }
+#controls label[for="color-5"] { background-color: #B37FD4; }
+#controls label[for="color-6"] { background-color: #E8A474; }
+
+#controls label[for="color-7"] { background-color: #C94C32; }
+#controls label[for="color-8"] { background-color: #FFFFFF; }
+#controls label[for="color-9"] { background-color: #4C708C; }
+
+#controls label[for="color-a"] { background-color: #46747A; }
+#controls label[for="color-b"] { background-color: #733699; }
+#controls label[for="color-c"] { background-color: #F8F8F8; }
+
+
+#controls .mark {
+    width: 30%;
+    height: 100%;
+    
+    text-align: right;
+}
+
+#controls .mark a {
+    display: inline-block;
+
+    background-image: url(../img/mark.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+
+    margin-right: 6px;
+
+    width: 32px;
+    height: 32px;
+
+    text-decoration: none;
+}
+
+
+@media (min-width: 1000px) {
+    #board {
+        left: 50%;
+        margin-left: -500px;
+        max-width: 1000px;
+    }
+
+    #controls {
+        left: 50%;
+        margin-left: -500px;
+        max-width: 1000px;
+    }
+}
+
+#menu-expander {
+    display: none;
+}
+
+.painting #menu {
+    pointer-events: none;
+}
+
+@media all and (max-width: 640px) {
+
+    #menu {
+        position: absolute;
+
+        left: 0;
+        right: 0;
+        bottom: -100px;
+        height: 170px;
+        width: 100%;
+
+        -webkit-transition: bottom .5s;
+           -moz-transition: bottom .5s;
+            -ms-transition: bottom .5s;
+             -o-transition: bottom .5s;
+                transition: bottom .5s;
+
+    }
+
+    #menu.visible {
+        bottom: 0;
+    }
+
+    #menu-expander {
+        display: block;
+        position: absolute;
+        right: 0;
+        background: #2d3236;
+        padding: 20px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #FFF;
+    }
+
+    #board {
+        position: absolute;
+        padding: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    #controls {
+        position: absolute;
+        padding: 6px 8px 12px 8px;
+        top: 80px;
+        height: 90px;
+        background: #EEE;
+    }
+
+    #controls > * {
+        float: none;
+    }
+
+    #controls .colors {
+        width: 100%;
+        height: auto;
+    }
+
+    #controls .colors li {
+        margin: 0 6px 20px 0;
+        width: 32px;
+        height: 32px;
+    }
+
+    #controls .control {
+        margin: 10px;
+    }
+
+    #controls .about {
+        margin: 10px;
+    }
+
+    #users-online {
+        position: absolute;
+        left: 20px;
+        width: auto;
+        height: auto;
+    }
+
+    #controls .mark {
+        position: absolute;
+        bottom: 6px;
+        right: 10px;
+        width: 100%;
+        height: auto;
+    }
+
+}
