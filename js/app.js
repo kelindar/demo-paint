@@ -55,7 +55,7 @@ function PaintChannel (url) {
 
   this.userId = null;
   this.userCount = 0;
-  this.topic = "JOprXrilHQi+Cgm34BUPqN8hi6W4kUDz/paint/";
+  this.topic = "JOprXrilHQi-Cgm34BUPqN8hi6W4kUDz/paint/";
   this.client = new Paho.MQTT.Client("api.emitter.io", 8080, "paint-client");
   this.client.onMessageArrived = onMessage;
   
