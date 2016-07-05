@@ -52,41 +52,41 @@ function PaintChannel (url) {
   var connected = false;
   var hash = '';
   var userid;
+  var key = "JOprXrilHQi-Cgm34BUPqN8hi6W4kUDz";
 
   this.userId = null;
   this.userCount = 0;
-  this.topic = "JOprXrilHQi-Cgm34BUPqN8hi6W4kUDz/paint/";
-  this.client = new Paho.MQTT.Client("api.emitter.io", 8080, "paint-client");
-  this.client.onMessageArrived = onMessage;
-  
+  this.client = emitter.connect();
+
   // called when a message arrives
-  function onMessage(m) {
+  this.client.on('message', function(m){
     try {
       // Get the payload and parse it
-      self.ondata(
-        JSON.parse(m.payloadString)
-        );
+      self.ondata( m.asObject() );
     } catch (encodingError) { console.error(encodingError); }
-  }
+  });
+  
+  this.client.on('connect', function(){
+    connected = true;
+    self.onstate(connected);
+    self.client.subscribe({
+        key: key,
+        channel: "paint"
+    });
+  });
 
   this.send = function (data) {
       data.id = self.userId;
-      var message = new Paho.MQTT.Message(JSON.stringify(data));
-      message.destinationName = self.topic;
-      self.client.send(message)
+      self.client.publish({
+        key: key,
+        channel: "paint",
+        message: JSON.stringify(data)
+      });
   };;
 
   if (location.hash && location.hash.length > 1) {
     hash = '/' + location.hash.substr(1);
   }
-
-  (function setup () {
-    self.client.connect({onSuccess: function(){
-      connected = true;
-      self.onstate(connected);
-      self.client.subscribe(self.topic);
-    }});
-  }());
 }
 
 function TouchInterface (target) {
